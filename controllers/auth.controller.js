@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 import pool from "../config/db.js";
-import jwt from "jsonwebtoken";
 
 import { BadRequestError, UnautherizedError } from "../errors/index.js";
 import { generateToken, setToken } from "../utils/manageToken.js";

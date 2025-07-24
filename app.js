@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import pool from "./config/db.js";
 
 // Import Routes
 import routes from "./routes/index.js";
@@ -35,13 +36,13 @@ app.use(notFound);
 
 const startServer = async () => {
   try {
-    // const URI = process.env.MONGO_URI;
-    // await connectDB(URI);
+    const te = await pool.query("SELECT 1");
     app.listen(PORT, () => {
       console.log(`App is listening on port ${PORT}`);
     });
   } catch (error) {
     console.log("Server startup error:", error.message);
+    process.exit(1);
   }
 };
 

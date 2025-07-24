@@ -1,4 +1,5 @@
 import pool from "../config/db.js";
+import { banners } from "../utils/constants.js";
 
 export const getBanners = async (req, res, next) => {
   try {
@@ -14,3 +15,21 @@ export const getBanners = async (req, res, next) => {
     next(error);
   }
 };
+
+const createBanners = async () => {
+  try {
+    banners.forEach(async (banner) => {
+      const sql =
+        "INSERT INTO banners (banner_name, banner_image, description) VALUES (?,?,?)";
+      await pool.execute(sql, [
+        banner.banner_name,
+        banner.banner_image,
+        banner.description,
+      ]);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// createBanners();

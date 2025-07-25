@@ -1,6 +1,7 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
 dotenv.config();
+import { createTables } from "../utils/createTables.js";
 
 const pool = mysql
   .createPool({
@@ -11,5 +12,7 @@ const pool = mysql
     database: process.env.MYSQLDATABASE,
   })
   .promise();
+
+await createTables();
 
 export default pool;

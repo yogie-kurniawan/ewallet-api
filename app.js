@@ -27,6 +27,12 @@ app.use(
 app.use(cookieParser());
 
 // Routes
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Sukses!",
+  });
+});
 app.use("/api", routes);
 app.use("/uploads", express.static("public/uploads"));
 

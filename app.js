@@ -36,12 +36,6 @@ app.use(notFound);
 
 const startServer = async () => {
   try {
-    console.log({
-      host: process.env.MYSQLHOST,
-      port: process.env.MYSQLPORT,
-      user: process.env.MYSQLUSER,
-      password: process.env.MYSQLPASSWORD,
-    });
     const te = await pool.query("SELECT 1");
     app.listen(PORT, () => {
       console.log(`App listen on PORT ${PORT}`);

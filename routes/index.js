@@ -9,6 +9,13 @@ import transactionRoutes from "./transaction.route.js";
 
 const router = express.Router();
 
+// Root Route
+router.use("/", (req, res) => {
+  res.status(200).json({
+    status: 0,
+    message: "Sukses!",
+  });
+});
 // Auth Routes
 router.use("/", authRoutes);
 // User Routes

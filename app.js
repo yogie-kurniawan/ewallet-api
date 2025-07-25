@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.status(200).json({
     status: 0,
-    message: "Sukses!",
+    message: `Please go to ${process.env.APP_URL}/api`,
   });
 });
 app.use("/api", routes);

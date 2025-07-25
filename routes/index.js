@@ -20,7 +20,7 @@ router.use("/users", userRoutes);
 router.use("/banner", bannerRoutes);
 router.use("/services", serviceRoutes);
 router.use("/balance", balanceRoutes);
-router.use("/topups", topUpRoutes);
-router.use("/transactions", transactionRoutes);
+router.use("/topup", topUpRoutes);
+router.use("/transaction", transactionRoutes);
 
 export default router;

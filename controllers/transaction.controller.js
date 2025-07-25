@@ -76,3 +76,28 @@ export const transaction = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getHistoryTransactions = async (req, res, next) => {
+  try {
+    let { limit } = req.body;
+    limit = limit && !isNaN(limit) ? limit : 3;
+
+    // Get the transaction
+    const transactionSql =
+      "SELECT invoice_number, service_code, service_name, transaction_type, total_amount, created_at as created_on FROM transactions LIMIT ?";
+
+    const [transactionRows] = await pool.execute(transactionSql, [limit]);
+
+    return res.status(200).json({
+      status: 0,
+      message: "Get History Berhasil",
+      data: {
+        offset: 0,
+        limit,
+        records: transactionRows,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};

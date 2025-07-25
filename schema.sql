@@ -1,5 +1,5 @@
 -- User table
-CREATE TABLE users (
+CREATE TABLE users IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL, 
     last_name VARCHAR(100) NOT NULL, 
@@ -11,7 +11,7 @@ CREATE TABLE users (
 );
 
 -- Banner Table
-CREATE TABLE banners (
+CREATE TABLE banners IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     banner_name VARCHAR(100) NOT NULL, 
     banner_image VARCHAR(100) NOT NULL, 
@@ -21,7 +21,7 @@ CREATE TABLE banners (
 );
 
 -- Services Table
-CREATE TABLE services (
+CREATE TABLE services IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     service_code  VARCHAR(100) NOT NULL, 
     service_name VARCHAR(100) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE services (
 );
 
 -- Wallets Table 
-CREATE TABLE wallets (
+CREATE TABLE wallets IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL UNIQUE,
     name VARCHAR(100) NOT NULL, 
@@ -43,7 +43,7 @@ CREATE TABLE wallets (
 );
 
 -- Topup Table
-CREATE TABLE topups (
+CREATE TABLE topups IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     wallet_id BIGINT NOT NULL,
     transaction_type ENUM('TOPUP') NOT NULL DEFAULT "TOPUP",
@@ -55,7 +55,7 @@ CREATE TABLE topups (
 );
 
 -- Transactions Table
-CREATE TABLE transactions (
+CREATE TABLE transactions IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     wallet_id BIGINT NOT NULL,
     service_code VARCHAR(100) NOT NULL,

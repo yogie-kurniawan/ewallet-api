@@ -23,7 +23,7 @@ CREATE TABLE banners IF NOT EXISTS(
 -- Services Table
 CREATE TABLE services IF NOT EXISTS(
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
-    service_code  VARCHAR(100) NOT NULL, 
+    service_code  VARCHAR(100) NOT NULL UNIQUE, 
     service_name VARCHAR(100) NOT NULL,
     service_icon VARCHAR(255) NOT NULL,
     service_tariff BIGINT NOT NULL,

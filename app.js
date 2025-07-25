@@ -36,16 +36,16 @@ app.use(notFound);
 
 const startServer = async () => {
   try {
-    const te = await pool.query("SELECT 1");
-    app.listen(PORT, () => {
-      console.log({
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_NAME,
-      });
+    console.log({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
     });
+    // app.listen(PORT, () => {
+    //   database: process.env.DB_NAME,
+    // });
+    // const te = await pool.query("SELECT 1");
   } catch (error) {
     console.log("Server startup error:", error.message);
     process.exit(1);

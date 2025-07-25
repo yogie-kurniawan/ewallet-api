@@ -2,8 +2,6 @@ import pool from "../config/db.js";
 import { generateInvoiceNumber } from "../utils/invoiceNumber.js";
 import { BadRequestError } from "../errors/index.js";
 
-
-
 export const getBalance = async (req, res, next) => {
   const { id } = req.user;
   try {

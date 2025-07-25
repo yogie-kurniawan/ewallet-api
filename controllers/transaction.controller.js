@@ -79,20 +79,35 @@ export const transaction = async (req, res, next) => {
 
 export const getHistoryTransactions = async (req, res, next) => {
   try {
-    let { limit } = req.body;
+    let { limit, offset } = req.body;
+    const { id: userId } = req.user;
+
     limit = limit && !isNaN(limit) ? limit : 3;
+    offset = offset ? offset : 0;
+
+    const walletSql = "SELECT * FROM wallets WHERE user_id = ?";
+    const [walletRows] = await pool.execute(walletSql, [userId]);
+    if (walletRows.length === 0) {
+      throw new BadRequestError("Wallet tidak ditemukan");
+    }
+
+    const { id: walletid } = walletRows[0];
 
     // Get the transaction
     const transactionSql =
-      "SELECT invoice_number, service_code, service_name, transaction_type, total_amount, created_at as created_on FROM transactions LIMIT ?";
+      "SELECT invoice_number, service_code, service_name as description, transaction_type, total_amount, created_at as created_on FROM transactions WHERE wallet_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?";
 
-    const [transactionRows] = await pool.execute(transactionSql, [limit]);
+    const [transactionRows] = await pool.execute(transactionSql, [
+      walletid,
+      limit,
+      offset,
+    ]);
 
     return res.status(200).json({
       status: 0,
       message: "Get History Berhasil",
       data: {
-        offset: 0,
+        offset,
         limit,
         records: transactionRows,
       },

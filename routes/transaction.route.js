@@ -8,6 +8,6 @@ import authenticate from "../middleware/authenticate.js";
 const router = express.Router();
 
 // Routes
-router.post("/transaction", authenticate, transaction);
+router.post("/", authenticate, transaction);
 
 export default router;

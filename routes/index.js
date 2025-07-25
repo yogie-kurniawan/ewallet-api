@@ -9,26 +9,18 @@ import transactionRoutes from "./transaction.route.js";
 
 const router = express.Router();
 
-// Root Route
-router.use("/", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).json({
     status: 0,
-    message: "Sukses!",
+    message: `Sukses`,
   });
 });
-// Auth Routes
 router.use("/", authRoutes);
-// User Routes
-router.use("/", userRoutes);
-// Banner Routes
-router.use("/", bannerRoutes);
-// Service Routes
-router.use("/", serviceRoutes);
-// Balance Routes
-router.use("/", balanceRoutes);
-// Top Up Routes
-router.use("/", topUpRoutes);
-// Transaction Routes
-router.use("/", transactionRoutes);
+router.use("/users", userRoutes);
+router.use("/banner", bannerRoutes);
+router.use("/services", serviceRoutes);
+router.use("/balance", balanceRoutes);
+router.use("/topups", topUpRoutes);
+router.use("/transactions", transactionRoutes);
 
 export default router;

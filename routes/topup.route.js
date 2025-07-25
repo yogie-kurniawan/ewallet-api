@@ -8,6 +8,6 @@ import authenticate from "../middleware/authenticate.js";
 const router = express.Router();
 
 // Routes
-router.post("/topup", authenticate, topUp);
+router.post("/", authenticate, topUp);
 
 export default router;

@@ -38,7 +38,7 @@ const startServer = async () => {
   try {
     const te = await pool.query("SELECT 1");
     app.listen(PORT, () => {
-      console.log(`App listen on PORT ${PORT}`);
+      console.log(`App is listening on PORT ${PORT}`);
     });
   } catch (error) {
     console.log("Server startup error:", error.message);

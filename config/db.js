@@ -13,6 +13,6 @@ const pool = mysql
   })
   .promise();
 
-await createTables();
+await createTables(pool);
 
 export default pool;

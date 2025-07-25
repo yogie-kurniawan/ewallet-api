@@ -1,4 +1,4 @@
-export const createTables = async () => {
+export const createTables = async (pool) => {
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -79,7 +79,5 @@ export const createTables = async () => {
     console.log("✅ Semua tabel berhasil dibuat (jika belum ada).");
   } catch (error) {
     console.error("❌ Gagal membuat tabel:", error);
-  } finally {
-    pool.end(); // Tutup koneksi pool
   }
 };

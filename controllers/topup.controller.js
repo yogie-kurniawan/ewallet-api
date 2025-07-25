@@ -38,7 +38,7 @@ export const topUp = async (req, res, next) => {
     balance += top_up_amount;
     const updateWalletSql = `UPDATE wallets SET balance = ? WHERE user_id= ?`;
 
-    await pool.execute(updateWalletSql, [top_up_amount, userId]);
+    await pool.execute(updateWalletSql, [balance, userId]);
 
     const [updatedWallet] = await pool.execute(
       "SELECT balance FROM wallets WHERE user_id = ?",

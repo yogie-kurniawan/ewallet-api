@@ -29,7 +29,7 @@ app.use(cookieParser());
 // Routes
 app.get("/", (req, res) => {
   res.status(200).json({
-    status: "success",
+    status: 0,
     message: "Sukses!",
   });
 });
